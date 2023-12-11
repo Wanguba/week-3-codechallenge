@@ -57,6 +57,20 @@ class Restaurant(Base):
 
     reviews = relationship('Review', back_populates='restaurant')
 
+    @classmethod
+    def fanciest(cls, session):
+        return session.query(cls).order_by(cls.price.desc()).first()
+
+    def all_reviews(self):
+        review_strings = []
+
+        for review in self.reviews:
+            customer_name = review.customer.full_name() if review.customer else "Unknown Customer"
+            review_string = f"Review for {self.name} by {customer_name}: {review.star_rating} stars."
+            review_strings.append(review_string)
+
+        return review_strings
+    
 # Create the tables in the database
 Base.metadata.create_all(engine)
 
@@ -79,6 +93,5 @@ for restaurant in restaurants:
 # Close the session when done
 session.close()
 
-   
 
 
