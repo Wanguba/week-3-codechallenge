@@ -1,7 +1,6 @@
-from sqlalchemy import Column,Text, Integer,String, Boolean,ForeignKey, Float, DateTime
+# models.py
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy.sql import func
-
 
 Base = declarative_base()
 
@@ -12,7 +11,6 @@ class Review(Base):
     restaurant_id = Column(Integer, ForeignKey('restaurants.id'))
     customer_id = Column(Integer, ForeignKey('customers.id'))
 
-    # Define the relationship with Customer
     customer = relationship('Customer', back_populates='reviews')
     restaurant = relationship('Restaurant', back_populates='reviews')
 
@@ -22,6 +20,7 @@ class Customer(Base):
     first_name = Column(String)
     last_name = Column(String)
 
+    # Add the new column
     reviews = relationship('Review', back_populates='customer')
     
 class Restaurant(Base):
@@ -30,5 +29,4 @@ class Restaurant(Base):
     name = Column(String)
     price = Column(Float)  
 
-    
     reviews = relationship('Review', back_populates='restaurant')

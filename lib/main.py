@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import sessionmaker, relationship
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 
 # Create an engine
 engine = create_engine('sqlite:///database.sqlite')
@@ -74,6 +73,7 @@ for customer in customers:
 restaurants = session.query(Restaurant).all()
 for restaurant in restaurants:
     print(f"Restaurant: {restaurant.name}, Price: {restaurant.price}, Reviews: {len(restaurant.reviews)}")
+
 
 
    
