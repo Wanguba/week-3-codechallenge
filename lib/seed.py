@@ -31,14 +31,26 @@ session.add_all([customer_instance3, restaurant_instance3, review_instance3])
 # Commit the changes to the database
 session.commit()
 
-new_customer = Customer(first_name='Alice', last_name='Smith')
-
-session.add(new_customer)
-
 # Add a new review for the customer
-Customer.add_review(restaurant=Restaurant, rating=3.5)
+new_customer = Customer(first_name='Alice', last_name='Smith')
+session.add(new_customer)
+new_review = Review(star_rating=3.5, customer=new_customer, restaurant=restaurant_instance)
+session.add(new_review)
 session.commit()
 
 # Delete reviews for a specific restaurant
-Customer.delete_reviews(restaurant=Restaurant)
+restaurant_to_delete_reviews = Restaurant(name='KFC', price=20.0)
+customer_to_delete_reviews = Customer(first_name='Billy', last_name='Jean')
+
+# Assuming you know the specific instances of restaurant and customer for which you want to delete reviews
+customer_to_delete_reviews.delete_reviews(session, restaurant_to_delete_reviews)
 session.commit()
+
+# Query and print the results
+customers = session.query(Customer).all()
+for customer in customers:
+    print(f"Customer: {customer.full_name()}, Reviews: {len(customer.reviews)}")
+
+restaurants = session.query(Restaurant).all()
+for restaurant in restaurants:
+    print(f"Restaurant: {restaurant.name}, Price: {restaurant.price}, Reviews: {len(restaurant.reviews)}")
