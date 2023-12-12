@@ -1,4 +1,4 @@
-### Code challenge by Evan keya on 11/12/2023:
+### Code challenge by Edith Wanguba:
 
 ## Code challenge description:
 
@@ -17,13 +17,5 @@
 - Run "Python3" then the 'file name' to test the code.
 - Change the python version if you have a different version on you machine. In this challenge, it is version "3.10.12"
 
-## Known bugs;
-- None
-
-## Support and Contact details;
-
-- email: evan.keya@student.moringaschool.com
-- phone no.: 0797118632
-
 # License
-*Licenced under the MIT Licence Copyright (c) 2023 **Evan Keya
+This project is free to use.
